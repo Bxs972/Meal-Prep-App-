@@ -102,7 +102,7 @@ export function SettingsPage({ onExportData, onImportData, onClearData }: Settin
               </div>
               <Switch
                 checked={settings.notifications}
-                onCheckedChange={(checked) => updateSetting('notifications', checked)}
+                onCheckedChange={(checked: any) => updateSetting('notifications', checked)}
               />
             </div>
           </div>
@@ -123,13 +123,13 @@ export function SettingsPage({ onExportData, onImportData, onClearData }: Settin
               </div>
               <Switch
                 checked={settings.darkMode}
-                onCheckedChange={(checked) => updateSetting('darkMode', checked)}
+                onCheckedChange={(checked: any) => updateSetting('darkMode', checked)}
               />
             </div>
             
             <div>
               <Label>Language</Label>
-              <Select value={settings.language} onValueChange={(value) => updateSetting('language', value)}>
+              <Select value={settings.language} onValueChange={(value: any) => updateSetting('language', value)}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
@@ -144,7 +144,7 @@ export function SettingsPage({ onExportData, onImportData, onClearData }: Settin
 
             <div>
               <Label>Start of Week</Label>
-              <Select value={settings.startOfWeek} onValueChange={(value) => updateSetting('startOfWeek', value)}>
+              <Select value={settings.startOfWeek} onValueChange={(value: any) => updateSetting('startOfWeek', value)}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
