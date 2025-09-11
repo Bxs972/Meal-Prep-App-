@@ -100,7 +100,10 @@ export default function App() {
     const savedActivePlanId = localStorage.getItem('meal-planner-active-plan-id');
     
     if (savedPlans) {
-      const plans = JSON.parse(savedPlans);
+      const plans = JSON.parse(savedPlans).map((plan: any) => ({
+        ...plan,
+        createdAt: new Date(plan.createdAt)
+      }));
       setMealPlans(plans);
       
       if (savedActivePlanId && plans.find((p: MealPlan) => p.id === savedActivePlanId)) {
@@ -354,38 +357,32 @@ export default function App() {
     URL.revokeObjectURL(url);
   };
 
- const importData = (data: any) => {
-  if (!activePlanId) {
-    alert('No active plan selected to import data into.');
-    return;
-  }
-  
-  if (data.meals && Array.isArray(data.meals)) {
-    updatePlan(activePlanId, { meals: data.meals });
-  }
-
-  if (data.recipes && Array.isArray(data.recipes)) {
-    updatePlan(activePlanId, { recipes: data.recipes });
-  }
-
-  alert('Data imported successfully!');
-};
-
-const clearAllData = () => {
-  if (confirm('Are you sure you want to clear all data? This action cannot be undone.')) {
-    // Réinitialise l'état des plans de repas à un tableau vide
-    setMealPlans([]);
+  const importData = (data: any) => {
+    if (!activePlanId) {
+      alert('No active plan selected to import data into.');
+      return;
+    }
     
-    // Réinitialise l'ID du plan actif à une chaîne vide
-    setActivePlanId('');
-    
-    // Supprime les données de meal-planner du stockage local
-    localStorage.removeItem('meal-planner-plans');
-    localStorage.removeItem('meal-planner-active-plan-id');
-    
-    alert('All data has been cleared.');
-  }
-};
+    if (data.meals && Array.isArray(data.meals)) {
+      updatePlan(activePlanId, { meals: data.meals });
+    }
+
+    if (data.recipes && Array.isArray(data.recipes)) {
+      updatePlan(activePlanId, { recipes: data.recipes });
+    }
+
+    alert('Data imported successfully!');
+  };
+
+  const clearAllData = () => {
+    if (confirm('Are you sure you want to clear all data? This action cannot be undone.')) {
+      setMealPlans([]);
+      setActivePlanId('');
+      localStorage.removeItem('meal-planner-plans');
+      localStorage.removeItem('meal-planner-active-plan-id');
+      alert('All data has been cleared.');
+    }
+  };
 
   // Handle view changes for mobile search
   const handleViewChange = (view: string) => {
@@ -484,23 +481,20 @@ const clearAllData = () => {
           />
         );
       case 'shopping':
-      // Correction : Utilisez la variable 'meals' (définie à la ligne 9 du PDF)
-      // qui contient le tableau de repas du plan actif, au lieu du type 'Meal'.
-      return <ShoppingList meals={meals} />; // [1] (ligne corrigée)
-
-    default:
-      return (
-        <div className="space-y-8">
-          {/* Header */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              {!isMobile && (
-                <Button variant="ghost" size="sm" className="text-gray-500">
-                  <ChevronLeft className="h-4 w-4 mr-1" />
-                  Home
-                </Button>
-              )}
-// ... (reste du code)
+        return <ShoppingList meals={meals} />;
+      default:
+        return (
+          <div className="space-y-8">
+            {/* Header */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                {!isMobile && (
+                  <Button variant="ghost" size="sm" className="text-gray-500">
+                    <ChevronLeft className="h-4 w-4 mr-1" />
+                    Home
+                  </Button>
+                )}
+                
                 {/* Mobile search button in header */}
                 {isMobile && (
                   <>
