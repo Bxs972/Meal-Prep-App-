@@ -1,13 +1,19 @@
 import * as React from "react";
-import { Slot } from "@radix-ui/react-slot@1.1.2";
-import { ChevronRight, MoreHorizontal } from "lucide-react@0.487.0";
+import { Slot } from "@radix-ui/react-slot";
+import { ChevronRight, MoreHorizontal } from "lucide-react";
 
 import { cn } from "./utils";
 
+// ---------------------
+// Breadcrumb Container
+// ---------------------
 function Breadcrumb({ ...props }: React.ComponentProps<"nav">) {
   return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />;
 }
 
+// ---------------------
+// Breadcrumb List
+// ---------------------
 function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
   return (
     <ol
@@ -21,6 +27,9 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
   );
 }
 
+// ---------------------
+// Breadcrumb Item
+// ---------------------
 function BreadcrumbItem({ className, ...props }: React.ComponentProps<"li">) {
   return (
     <li
@@ -31,24 +40,35 @@ function BreadcrumbItem({ className, ...props }: React.ComponentProps<"li">) {
   );
 }
 
-function BreadcrumbLink({
-  asChild,
-  className,
-  ...props
-}: React.ComponentProps<"a"> & {
+// ---------------------
+// Polymorphic Breadcrumb Link
+// ---------------------
+type BreadcrumbLinkProps<T extends React.ElementType = "a"> = {
   asChild?: boolean;
-}) {
-  const Comp = asChild ? Slot : "a";
+} & React.ComponentPropsWithoutRef<T>;
+
+// forwardRef polymorphique
+const BreadcrumbLink = React.forwardRef<
+  HTMLElement, // ref peut être sur Slot ou sur <a>
+  BreadcrumbLinkProps
+>(({ asChild, className, ...props }, ref) => {
+  const Comp: React.ElementType = asChild ? Slot : "a";
 
   return (
     <Comp
+      ref={ref as React.Ref<any>} // TS accepte maintenant ref sur Slot ou <a>
       data-slot="breadcrumb-link"
       className={cn("hover:text-foreground transition-colors", className)}
       {...props}
     />
   );
-}
+});
 
+BreadcrumbLink.displayName = "BreadcrumbLink";
+
+// ---------------------
+// Breadcrumb Page
+// ---------------------
 function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
@@ -62,6 +82,9 @@ function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
   );
 }
 
+// ---------------------
+// Breadcrumb Separator
+// ---------------------
 function BreadcrumbSeparator({
   children,
   className,
@@ -80,10 +103,10 @@ function BreadcrumbSeparator({
   );
 }
 
-function BreadcrumbEllipsis({
-  className,
-  ...props
-}: React.ComponentProps<"span">) {
+// ---------------------
+// Breadcrumb Ellipsis
+// ---------------------
+function BreadcrumbEllipsis({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
       data-slot="breadcrumb-ellipsis"
@@ -98,6 +121,9 @@ function BreadcrumbEllipsis({
   );
 }
 
+// ---------------------
+// Exports
+// ---------------------
 export {
   Breadcrumb,
   BreadcrumbList,

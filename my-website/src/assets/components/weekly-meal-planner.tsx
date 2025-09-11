@@ -7,7 +7,7 @@ import { AddMealDialog } from "./pages/add-meal-dialog";
 
 // Correction : le chemin vers le dossier 'types' doit être ajusté
 // Depuis 'components', il faut remonter de deux niveaux (../..) pour atteindre 'src'
-import { Meal, Recipe } from "../../pages";
+import { Meal, Recipe } from "./pages";
 
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
