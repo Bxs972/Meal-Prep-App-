@@ -1,6 +1,6 @@
-import { Card, CardContent } from "../components/ui/card";
-import { Button } from "../components/ui/button";
-import { Badge } from "../components/ui/badge";
+import { Card, CardContent } from "./ui/card";
+import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
 import { Trash2, Edit, Clock, Users } from "lucide-react";
 
 interface Meal {

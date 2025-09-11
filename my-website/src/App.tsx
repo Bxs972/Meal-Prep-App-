@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Sidebar } from './assets/components/ui/sidebar';
+import { Sidebar } from './assets/components/sidebar';
 import { MobileNavigation } from './assets/components/mobile-navigation';
 import { MobileSearchModal } from './assets/components/mobile-search-modal';
 import { ModernWeeklyPlanner } from './assets/components/modern-weekly-planner';
 import { MealTypeCard } from './assets/components/meal-type-card';
 import { RecipeManager } from './assets/components/recipe-manager';
 import { ShoppingList } from './assets/components/shopping-list';
-import { AddMealDialog } from './assets/pages/add-meal-dialog';
+import { AddMealDialog } from './assets/components/add-meal-dialog';
 import { MealDetailDialog } from './assets/components/meal-detail-dialog';
 import { AnalyticsPage } from './assets/components/analytics-page';
 import { FilterPage } from './assets/components/filter-page';
@@ -354,25 +354,38 @@ export default function App() {
     URL.revokeObjectURL(url);
   };
 
-  const importData = (data: any) => {
-    if (data.meals && Array.isArray(data.meals)) {
-      setMeals(data.meals);
-    }
-    if (data.recipes && Array.isArray(data.recipes)) {
-      setRecipes(data.recipes);
-    }
-    alert('Data imported successfully!');
-  };
+ const importData = (data: any) => {
+  if (!activePlanId) {
+    alert('No active plan selected to import data into.');
+    return;
+  }
+  
+  if (data.meals && Array.isArray(data.meals)) {
+    updatePlan(activePlanId, { meals: data.meals });
+  }
 
-  const clearAllData = () => {
-    if (confirm('Are you sure you want to clear all data? This action cannot be undone.')) {
-      setMeals([]);
-      setRecipes([]);
-      localStorage.removeItem('meal-planner-meals');
-      localStorage.removeItem('meal-planner-recipes');
-      alert('All data has been cleared.');
-    }
-  };
+  if (data.recipes && Array.isArray(data.recipes)) {
+    updatePlan(activePlanId, { recipes: data.recipes });
+  }
+
+  alert('Data imported successfully!');
+};
+
+const clearAllData = () => {
+  if (confirm('Are you sure you want to clear all data? This action cannot be undone.')) {
+    // Réinitialise l'état des plans de repas à un tableau vide
+    setMealPlans([]);
+    
+    // Réinitialise l'ID du plan actif à une chaîne vide
+    setActivePlanId('');
+    
+    // Supprime les données de meal-planner du stockage local
+    localStorage.removeItem('meal-planner-plans');
+    localStorage.removeItem('meal-planner-active-plan-id');
+    
+    alert('All data has been cleared.');
+  }
+};
 
   // Handle view changes for mobile search
   const handleViewChange = (view: string) => {
@@ -471,19 +484,23 @@ export default function App() {
           />
         );
       case 'shopping':
-        return <ShoppingList meals={meals} />;
-      default:
-        return (
-          <div className="space-y-8">
-            {/* Header */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                {!isMobile && (
-                  <Button variant="ghost" size="sm" className="text-gray-500">
-                    <ChevronLeft className="h-4 w-4 mr-1" />
-                    Home
-                  </Button>
-                )}
+      // Correction : Utilisez la variable 'meals' (définie à la ligne 9 du PDF)
+      // qui contient le tableau de repas du plan actif, au lieu du type 'Meal'.
+      return <ShoppingList meals={meals} />; // [1] (ligne corrigée)
+
+    default:
+      return (
+        <div className="space-y-8">
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              {!isMobile && (
+                <Button variant="ghost" size="sm" className="text-gray-500">
+                  <ChevronLeft className="h-4 w-4 mr-1" />
+                  Home
+                </Button>
+              )}
+// ... (reste du code)
                 {/* Mobile search button in header */}
                 {isMobile && (
                   <>

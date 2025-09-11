@@ -3,7 +3,7 @@ import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Plus } from "lucid
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import { AddMealDialog } from "../pages/add-meal-dialog";
+import { AddMealDialog } from "./add-meal-dialog";
 
 interface Recipe {
   id: string;

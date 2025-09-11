@@ -1,5 +1,5 @@
 import { WeeklyMealCard } from "./weekly-meal-card";
-import { AddMealDialog } from "../pages/add-meal-dialog";
+import { AddMealDialog } from "./add-meal-dialog";
 import { Button } from "./ui/button";
 import { Plus, RefreshCw } from "lucide-react";
 import { useResponsive } from "./ui/use-responsive";
