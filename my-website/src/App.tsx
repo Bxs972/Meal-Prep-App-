@@ -363,15 +363,20 @@ export default function App() {
       return;
     }
     
-    if (data.meals && Array.isArray(data.meals)) {
-      updatePlan(activePlanId, { meals: data.meals });
-    }
+    try {
+      if (data.meals && Array.isArray(data.meals)) {
+        updatePlan(activePlanId, { meals: data.meals });
+      }
 
-    if (data.recipes && Array.isArray(data.recipes)) {
-      updatePlan(activePlanId, { recipes: data.recipes });
-    }
+      if (data.recipes && Array.isArray(data.recipes)) {
+        updatePlan(activePlanId, { recipes: data.recipes });
+      }
 
-    alert('Data imported successfully!');
+      alert('Data imported successfully!');
+    } catch (error) {
+      console.error('Error importing data:', error);
+      alert('Error importing data. Please check the file format and try again.');
+    }
   };
 
   const clearAllData = () => {
