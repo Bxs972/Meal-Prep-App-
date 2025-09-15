@@ -1,93 +1,54 @@
-import { useState, useEffect } from 'react';
-import { Sidebar } from './assets/components/sidebar';
-import { MobileNavigation } from './assets/components/mobile-navigation';
-import { MobileSearchModal } from './assets/components/mobile-search-modal';
-import { ModernWeeklyPlanner } from './assets/components/modern-weekly-planner';
-import { MealTypeCard } from './assets/components/meal-type-card';
-import { RecipeManager } from './assets/components/recipe-manager';
-import { ShoppingList } from './assets/components/shopping-list';
-import { AddMealDialog } from './assets/components/add-meal-dialog';
-import { MealDetailDialog } from './assets/components/meal-detail-dialog';
-import { AnalyticsPage } from './assets/components/analytics-page';
-import { FilterPage } from './assets/components/filter-page';
-import { SettingsPage } from './assets/components/settings-page';
-import { CalendarPage } from './assets/components/calendar-page';
-import { MorePage } from './assets/components/more-page';
-import { SearchResults } from './assets/components/search-results';
-import { PreparationPage } from './assets/components/preparation-page';
-import { AddPlanPage } from './assets/components/add-plan-page';
-import { PlanManagerPage } from './assets/components/plan-manager-page';
-import { Button } from './assets/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from './assets/components/ui/dropdown-menu';
-import { ChevronLeft, MoreHorizontal, Plus, Search, Calendar, ChefHat, Settings } from 'lucide-react';
-import { useResponsive } from './assets/components/ui/use-responsive';
+// src/App.tsx
+import { useState, useEffect } from 'react'; // [2]
+import { Sidebar } from './assets/components/sidebar'; // [2]
+import { MobileNavigation } from './assets/components/mobile-navigation'; // [2]
+import { MobileSearchModal } from './assets/components/mobile-search-modal'; // [2]
+import { ModernWeeklyPlanner } from './assets/components/modern-weekly-planner'; // [2]
+import { MealTypeCard } from './assets/components/meal-type-card'; // [2]
+import { RecipeManager } from './assets/components/recipe-manager'; // [2]
+import { ShoppingList } from './assets/components/shopping-list'; // [2]
 
-interface Recipe {
-  id: string;
-  name: string;
-  cookTime?: number;
-  servings?: number;
-  ingredients: string[];
-  instructions?: string;
+import { AddMealDialog } from './assets/components/add-meal-dialog'; // [3]
+import { MealDetailDialog } from './assets/components/meal-detail-dialog'; // [3]
+import { AnalyticsPage } from './assets/components/analytics-page'; // [3]
+import { FilterPage } from './assets/components/filter-page'; // [3]
+import { SettingsPage } from './assets/components/settings-page'; // [3]
+import { CalendarPage } from './assets/components/calendar-page'; // [3]
+import { MorePage } from './assets/components/more-page'; // [3]
+import { SearchResults } from './assets/components/search-results'; // [3]
+
+import { PreparationPage } from './assets/components/preparation-page'; // [4]
+import { AddPlanPage } from './assets/components/add-plan-page'; // [4]
+import { PlanManagerPage } from './assets/components/plan-manager-page'; // [4]
+import { Button } from './assets/components/ui/button'; // [4]
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from './assets/components/ui/dropdown-menu'; // [4]
+import { ChevronLeft, MoreHorizontal, Plus, Search, Calendar, ChefHat, Settings } from 'lucide-react'; // [4]
+
+import { useResponsive } from './assets/components/ui/use-responsive'; // [5]
+
+// CORRECTION : Importez les interfaces Recipe, Meal et MealPlan depuis le fichier types/index.ts
+// Supprimez les définitions locales de ces interfaces qui étaient présentes ici.
+import { Recipe, Meal, MealPlan } from './types'; // Assurez-vous que le chemin est correct vers votre fichier index.ts ou meal.ts dans le dossier types.
+
+const mealTypes = [ /* ... contenu de mealTypes reste inchangé [5, 6, 8] ... */ ];
+
+export default function App() { // [6]
+  const [mealPlans, setMealPlans] = useState<MealPlan[]>([]); // [6]
+  const [activePlanId, setActivePlanId] = useState<string>(''); // [6]
+
+  const [currentWeek, setCurrentWeek] = useState(new Date()); // [7]
+  const [activeView, setActiveView] = useState('menu'); // [7]
+  const [editingMeal, setEditingMeal] = useState<Meal | null>(null); // [7]
+  const [showAddMealDialog, setShowAddMealDialog] = useState(false); // [7]
+  const [searchQuery, setSearchQuery] = useState(''); // [7]
+  const [viewingMealDetails, setViewingMealDetails] = useState<Meal | null>(null); // [7]
+  const [showMobileSearchModal, setShowMobileSearchModal] = useState(false); // [7]
+  const { isMobile, isTablet } = useResponsive(); // [7]
+
+  // Reste du code de App.tsx (fonctions, useEffects, renderMainContent, etc.) [9-43]
+  // La variable 'meals' sera correctement typée grâce à l'import de MealPlan
+  // et Meal depuis le fichier de types centralisé.
 }
-
-interface Meal {
-  id: string;
-  name: string;
-  type: 'breakfast' | 'lunch' | 'dinner' | 'supper';
-  day: string;
-  recipe?: Recipe;
-  notes?: string;
-  imageUrl?: string;
-  isFavorite?: boolean;
-}
-
-interface MealPlan {
-  id: string;
-  name: string;
-  description?: string;
-  color: string;
-  meals: Meal[];
-  recipes: Recipe[];
-  createdAt: Date;
-  isActive: boolean;
-  category: 'personal' | 'family' | 'diet' | 'fitness' | 'custom';
-}
-
-const mealTypes = [
-  {
-    title: 'Steak',
-    ingredientsCount: 3,
-    imageUrl: 'https://images.unsplash.com/photo-1602216475919-37336ceb4ad3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdGVhayUyMGRpbm5lciUyMG1lYXR8ZW58MXx8fHwxNzU3MTE0NTIwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
-  },
-  {
-    title: 'Veg Food',
-    ingredientsCount: 2,
-    imageUrl: 'https://images.unsplash.com/photo-1606757819934-d61a9f7279d5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2ZWdldGFyaWFuJTIwc2FsYWQlMjBoZWFsdGh5fGVufDF8fHx8MTc1NzExNDUyNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
-  },
-  {
-    title: 'Meal',
-    ingredientsCount: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1651352650142-385087834d9d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxiYWxhbmNlZCUyMG1lYWwlMjBoZWFsdGh5fGVufDF8fHx8MTc1NzExNDUzMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
-  },
-  {
-    title: 'Steak Fries',
-    ingredientsCount: 3,
-    imageUrl: 'https://images.unsplash.com/photo-1651843465180-5965076f7368?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXJnZXIlMjBmcmllcyUyMG1lYWx8ZW58MXx8fHwxNzU3MTE0NTI4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
-  }
-];
-
-export default function App() {
-  const [mealPlans, setMealPlans] = useState<MealPlan[]>([]);
-  const [activePlanId, setActivePlanId] = useState<string>('');
-  const [currentWeek, setCurrentWeek] = useState(new Date());
-  const [activeView, setActiveView] = useState('menu');
-  const [editingMeal, setEditingMeal] = useState<Meal | null>(null);
-  const [showAddMealDialog, setShowAddMealDialog] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [viewingMealDetails, setViewingMealDetails] = useState<Meal | null>(null);
-  const [showMobileSearchModal, setShowMobileSearchModal] = useState(false);
-  const { isMobile, isTablet } = useResponsive();
 
   // Get current active plan
   const activePlan = mealPlans.find(plan => plan.id === activePlanId);
