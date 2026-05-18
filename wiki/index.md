@@ -1,6 +1,7 @@
 ---
 type: index
 title: "Index du Wiki"
+domaine: "Recherche / veille technique"
 maj: 2026-05-18
 ---
 
@@ -9,46 +10,51 @@ maj: 2026-05-18
 Catalogue orienté contenu. Mis à jour à chaque ingestion ou création de page.
 Pour la chronologie des opérations, voir [[log]].
 
-> **Comment lire cet index ?** Chaque section liste les pages d'un type
-> donné, avec un wikilink et une ligne de résumé. Cliquer sur le lien ouvre
-> la page dans Obsidian.
+> **Domaine** : recherche / veille technique. Le wiki collecte papiers,
+> articles, talks, et tisse les liens entre auteurs, organisations,
+> outils, et concepts techniques.
 
 ---
 
 ## Sources (résumés de documents ingérés)
 
-| Page | Auteur | Date publi. | Date ingest. | Tags |
-|------|--------|-------------|--------------|------|
-| [[2026-05-18-batch-cooking-101]] | Démo | 2025 | 2026-05-18 | démo, meal-prep |
+*(aucune source ingérée pour l'instant)*
 
-*Total : 1 source.*
+Schéma de tableau quand des sources arrivent :
+
+| Page | Type | Auteurs | Date publi. | Date ingest. | Tags |
+|------|------|---------|-------------|--------------|------|
+| —    | —    | —       | —           | —            | —    |
+
+*Total : 0 source.*
 
 ---
 
 ## Entités
 
 ### Personnes
-- [[demo-auteur]] — auteur fictif utilisé pour l'exemple d'ingestion.
-
-### Lieux
-*(aucun)*
+*(chercheur·e·s, ingénieur·e·s, auteur·e·s — aucune pour l'instant)*
 
 ### Organisations
-*(aucun)*
+*(laboratoires, entreprises, universités, équipes open-source — aucune)*
 
-### Produits / Outils
-*(aucun)*
+### Outils / Frameworks / Modèles
+*(librairies, produits logiciels, modèles nommés — aucun)*
 
-*Total : 1 entité.*
+### Conférences / Venues
+*(NeurIPS, ICLR, KubeCon, etc. — aucune)*
+
+*Total : 0 entité.*
 
 ---
 
 ## Concepts
 
-- [[batch-cooking]] — préparation en lot des repas de la semaine.
-- [[meal-prep]] — pratique générale d'anticipation des repas.
+*(idées, algorithmes, architectures, méthodes, théorèmes — aucun pour
+l'instant. Une page-concept est créée dès qu'un terme est mentionné dans
+au moins deux sources ou qu'il mérite une définition autonome.)*
 
-*Total : 2 concepts.*
+*Total : 0 concept.*
 
 ---
 
@@ -63,8 +69,8 @@ une réponse réutilisable.)*
 
 ## Statistiques
 
-- **Sources ingérées** : 1
-- **Entités** : 1
-- **Concepts** : 2
+- **Sources ingérées** : 0
+- **Entités** : 0
+- **Concepts** : 0
 - **Synthèses** : 0
 - **Dernière mise à jour** : 2026-05-18

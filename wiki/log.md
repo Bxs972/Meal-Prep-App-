@@ -29,3 +29,16 @@ opérations.
 - Index mis à jour (compteurs : 1 source, 1 entité, 2 concepts).
 - Aucune contradiction (premier contenu).
 - Suggestion de suivi : remplacer la démo par des sources réelles dès que l'utilisateur définit son domaine.
+
+## [2026-05-18] meta | Choix du domaine — veille technique
+- Domaine retenu : **recherche / veille technique**.
+- Mode d'ingestion par défaut : **pas à pas avec validation**.
+- `CLAUDE.md` mis à jour :
+  - Catégories d'entité élargies : personne, organisation, outil, conference, autre.
+  - Champ `nature` ajouté aux concepts (methode | algorithme | architecture | theoreme | idee | autre).
+  - Sous-type ajouté aux sources (article | papier | talk | doc | blog | post | autre).
+  - Frontmatter dédié aux papiers : `arxiv_id`, `doi`, `venue`.
+  - Nouvelle section §9 « Domaine et mode de travail ».
+- Suppression de la démo meal-prep (raw + 4 pages wiki) pour repartir propre.
+- Index réinitialisé avec les sections adaptées (Personnes / Organisations / Outils / Conférences).
+- Wiki vide, prêt à accueillir la première vraie source.

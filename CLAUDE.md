@@ -30,8 +30,8 @@ L'utilisateur dépose. L'agent classe, résume, relie, synthétise.
     ├── index.md       # Catalogue de tout le wiki (par catégorie)
     ├── log.md         # Journal chronologique des opérations
     ├── sources/       # Une page-résumé par source ingérée
-    ├── entites/       # Personnes, lieux, organisations, produits
-    ├── concepts/      # Idées, thèmes, théories, méthodes
+    ├── entites/       # Personnes, organisations, outils, conférences
+    ├── concepts/      # Idées, algorithmes, méthodes, théorèmes, architectures
     └── syntheses/     # Comparaisons, analyses, réponses à des questions
 ```
 
@@ -58,18 +58,39 @@ dans `raw/`. Le wiki est entièrement reconstructible à partir de `raw/`.
 
 Chaque page commence par un bloc YAML. Les champs varient selon le type.
 
-### Source
+### Source (générique)
 ```yaml
 ---
 type: source
+sous_type: article          # article | papier | talk | doc | blog | post | autre
 title: "Titre humain de la source"
-auteur: "Nom de l'auteur"
+auteurs: ["Nom Prénom", "Nom Prénom"]
 date_publication: 2025-03-15      # quand la source a été publiée
 date_ingestion: 2026-05-18         # quand on l'a ajoutée au wiki
-fichier_brut: "raw/articles/atomic-habits-ch3.md"
-tags: [habitudes, psychologie]
-entites: ["[[james-clear]]"]
-concepts: ["[[habitude-atomique]]", "[[boucle-habitude]]"]
+fichier_brut: "raw/articles/slug.md"
+url: "https://exemple.org/article"   # optionnel
+tags: [llm, rag, infrastructure]
+entites: ["[[hugging-face]]", "[[andrej-karpathy]]"]
+concepts: ["[[retrieval-augmented-generation]]", "[[transformer]]"]
+---
+```
+
+### Source — papier de recherche (champs additionnels)
+```yaml
+---
+type: source
+sous_type: papier
+title: "Attention Is All You Need"
+auteurs: ["Vaswani et al."]
+venue: "NeurIPS 2017"
+arxiv_id: "1706.03762"
+doi: ""
+date_publication: 2017-06-12
+date_ingestion: 2026-05-18
+fichier_brut: "raw/articles/2017-vaswani-attention.pdf"
+tags: [transformer, attention, nlp]
+entites: ["[[ashish-vaswani]]", "[[google-brain]]"]
+concepts: ["[[transformer]]", "[[self-attention]]"]
 ---
 ```
 
@@ -77,21 +98,31 @@ concepts: ["[[habitude-atomique]]", "[[boucle-habitude]]"]
 ```yaml
 ---
 type: entite
-title: "James Clear"
-categorie: personne                # personne | lieu | organisation | produit | autre
-tags: [auteur, productivite]
-sources: ["[[2026-05-18-atomic-habits-chapitre-3]]"]
+title: "Andrej Karpathy"
+categorie: personne                # personne | organisation | outil | conference | autre
+role: "chercheur, ex-OpenAI / Tesla"   # optionnel — fonction / rôle
+tags: [llm, deep-learning]
+sources: ["[[2026-05-18-karpathy-llm-os]]"]
 ---
 ```
+
+Catégories d'entité utilisées dans ce wiki :
+- **personne** : chercheur·e, ingénieur·e, auteur·e.
+- **organisation** : laboratoire, entreprise, université, équipe open-source.
+- **outil** : framework, librairie, produit logiciel, modèle nommé.
+- **conference** : NeurIPS, ICLR, KubeCon, etc. — utile pour grouper plusieurs papiers.
+- **autre** : tout ce qui ne rentre pas ailleurs (à éviter ; préférer ajouter
+  une catégorie au schéma si le besoin se répète).
 
 ### Concept
 ```yaml
 ---
 type: concept
-title: "Habitude atomique"
-tags: [habitudes, comportement]
-sources: ["[[2026-05-18-atomic-habits-chapitre-3]]"]
-concepts_lies: ["[[boucle-habitude]]"]
+title: "Retrieval-Augmented Generation"
+nature: methode               # methode | algorithme | architecture | theoreme | idee | autre
+tags: [llm, rag, recherche-information]
+sources: ["[[2026-05-18-lewis-rag]]"]
+concepts_lies: ["[[embedding]]", "[[vector-database]]"]
 ---
 ```
 
@@ -218,7 +249,21 @@ Grep-friendly : `grep "^## \[" wiki/log.md | tail -10`.
 
 ---
 
-## 9. Évolution du schéma
+## 9. Domaine et mode de travail (préférences utilisateur)
+
+- **Domaine** : recherche / veille technique (papiers, articles, talks,
+  outils, frameworks). Le wiki se concentre sur les idées techniques,
+  leurs auteurs, leurs implémentations.
+- **Mode d'ingestion par défaut** : **pas à pas avec validation**. Pour
+  chaque source, je fais d'abord un brief des points clés et j'attends
+  un feu vert avant d'écrire dans le wiki. Pas de batch silencieux sans
+  demande explicite.
+- **Tags transverses suggérés** : `papier`, `talk`, `tutoriel`, plus le
+  domaine technique (`llm`, `infra`, `compilers`, etc.).
+
+---
+
+## 10. Évolution du schéma
 
 Ce fichier est vivant. Quand un nouveau besoin émerge (nouveau type de
 page, nouvelle convention, nouvel outil), l'utilisateur et l'agent
