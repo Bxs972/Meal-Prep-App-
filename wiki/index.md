@@ -18,43 +18,42 @@ Pour la chronologie des opérations, voir [[log]].
 
 ## Sources (résumés de documents ingérés)
 
-*(aucune source ingérée pour l'instant)*
-
-Schéma de tableau quand des sources arrivent :
-
 | Page | Type | Auteurs | Date publi. | Date ingest. | Tags |
 |------|------|---------|-------------|--------------|------|
-| —    | —    | —       | —           | —            | —    |
+| [[2026-05-18-agentic-ai-fleet-management]] | papier | Sahana, Gowda, Akash | 2025-12 | 2026-05-18 | agentic-ai, function-calling, llm |
 
-*Total : 0 source.*
+*Total : 1 source.*
 
 ---
 
 ## Entités
 
 ### Personnes
-*(chercheur·e·s, ingénieur·e·s, auteur·e·s — aucune pour l'instant)*
+*(aucune page dédiée pour l'instant — les auteurs du premier papier sont
+mentionnés dans [[maharaja-institute-of-technology-mysore]].)*
 
 ### Organisations
-*(laboratoires, entreprises, universités, équipes open-source — aucune)*
+- [[maharaja-institute-of-technology-mysore]] — école d'ingénieurs (Inde), filière CSE-AIML.
 
 ### Outils / Frameworks / Modèles
-*(librairies, produits logiciels, modèles nommés — aucun)*
+- [[gemini-2-0-flash]] — modèle de langage Google, supporte le function-calling.
+- [[fastapi]] — framework web Python async.
+- [[sqlite]] — moteur de base de données relationnelle embarqué.
 
 ### Conférences / Venues
-*(NeurIPS, ICLR, KubeCon, etc. — aucune)*
+- [[iarjset]] — journal indien ; fiabilité discutable (impact factor non-JCR).
 
-*Total : 0 entité.*
+*Total : 5 entités.*
 
 ---
 
 ## Concepts
 
-*(idées, algorithmes, architectures, méthodes, théorèmes — aucun pour
-l'instant. Une page-concept est créée dès qu'un terme est mentionné dans
-au moins deux sources ou qu'il mérite une définition autonome.)*
+- [[agentic-ai]] — paradigme d'IA autonome, orchestre LLM + outils + mémoire.
+- [[function-calling]] — pattern de tool-use structuré pour LLM.
+- [[fleet-management]] — domaine d'application : gestion de flotte automobile.
 
-*Total : 0 concept.*
+*Total : 3 concepts.*
 
 ---
 
@@ -69,8 +68,8 @@ une réponse réutilisable.)*
 
 ## Statistiques
 
-- **Sources ingérées** : 0
-- **Entités** : 0
-- **Concepts** : 0
+- **Sources ingérées** : 1
+- **Entités** : 5
+- **Concepts** : 3
 - **Synthèses** : 0
 - **Dernière mise à jour** : 2026-05-18

@@ -42,3 +42,13 @@ opérations.
 - Suppression de la démo meal-prep (raw + 4 pages wiki) pour repartir propre.
 - Index réinitialisé avec les sections adaptées (Personnes / Organisations / Outils / Conférences).
 - Wiki vide, prêt à accueillir la première vraie source.
+
+## [2026-05-18] ingest | Sahana et al. 2025 — Agentic AI for Autonomous Fleet Management
+- Source brute : `raw/articles/2025-12-iarjset-agentic.md` (copier-coller fourni par l'utilisateur ; téléchargement direct bloqué par la politique réseau, hôte `iarjset.com` hors allowlist).
+- Mode « version allégée » choisi : pas de pages auteurs individuelles, pas de page conversational-ai.
+- Page source créée : [[2026-05-18-agentic-ai-fleet-management]].
+- Entités créées : [[maharaja-institute-of-technology-mysore]], [[iarjset]], [[gemini-2-0-flash]], [[fastapi]], [[sqlite]].
+- Concepts créés : [[agentic-ai]], [[function-calling]], [[fleet-management]].
+- Caveats critiques signalés (impact factor IARJSET non-JCR, méthodologie non reproductible, profil étudiant des auteurs, rédaction probablement LLM-assistée). Posture wiki : illustration de pattern, pas benchmark.
+- Aucune contradiction (premier contenu réel).
+- Pistes de suivi : ingérer les deux surveys cités (Abou Ali & Dornaika 2025, IEEE Xplore ; Acharya, Kuppan & Divya 2025, IEEE Access vol. 13). Comparer plus tard avec text-to-SQL, ReAct, multi-agent, MCP.
