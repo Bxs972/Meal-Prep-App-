@@ -2,7 +2,7 @@
 type: index
 title: "Index du Wiki"
 domaine: "Recherche / veille technique"
-maj: 2026-05-18
+maj: 2026-05-21
 ---
 
 # Index du Wiki
@@ -21,19 +21,21 @@ Pour la chronologie des opérations, voir [[log]].
 | Page | Type | Auteurs | Date publi. | Date ingest. | Tags |
 |------|------|---------|-------------|--------------|------|
 | [[2026-05-18-agentic-ai-fleet-management]] | papier | Sahana, Gowda, Akash | 2025-12 | 2026-05-18 | agentic-ai, function-calling, llm |
+| [[2026-05-21-yes-we-prompt-30-competences-ia-2026]] | article | Roisnel | 2025-12-07 | 2026-05-21 | vulgarisation, formation, prompt-engineering |
 
-*Total : 1 source.*
+*Total : 2 sources.*
 
 ---
 
 ## Entités
 
 ### Personnes
-*(aucune page dédiée pour l'instant — les auteurs du premier papier sont
-mentionnés dans [[maharaja-institute-of-technology-mysore]].)*
+*(aucune page dédiée pour l'instant — les auteurs sont mentionnés dans
+les pages de leur organisation ou de leur source d'origine.)*
 
 ### Organisations
 - [[maharaja-institute-of-technology-mysore]] — école d'ingénieurs (Inde), filière CSE-AIML.
+- [[yes-we-prompt]] — organisme de formation IA pour PME (France) ; source commerciale.
 
 ### Outils / Frameworks / Modèles
 - [[gemini-2-0-flash]] — modèle de langage Google, supporte le function-calling.
@@ -43,7 +45,7 @@ mentionnés dans [[maharaja-institute-of-technology-mysore]].)*
 ### Conférences / Venues
 - [[iarjset]] — journal indien ; fiabilité discutable (impact factor non-JCR).
 
-*Total : 5 entités.*
+*Total : 6 entités.*
 
 ---
 
@@ -52,8 +54,9 @@ mentionnés dans [[maharaja-institute-of-technology-mysore]].)*
 - [[agentic-ai]] — paradigme d'IA autonome, orchestre LLM + outils + mémoire.
 - [[function-calling]] — pattern de tool-use structuré pour LLM.
 - [[fleet-management]] — domaine d'application : gestion de flotte automobile.
+- [[prompt-rcorcf]] — mnémotechnique de prompt engineering (Rôle, Contexte, Objectif, Résultat, Contraintes, Format).
 
-*Total : 3 concepts.*
+*Total : 4 concepts.*
 
 ---
 
@@ -68,8 +71,8 @@ une réponse réutilisable.)*
 
 ## Statistiques
 
-- **Sources ingérées** : 1
-- **Entités** : 5
-- **Concepts** : 3
+- **Sources ingérées** : 2
+- **Entités** : 6
+- **Concepts** : 4
 - **Synthèses** : 0
-- **Dernière mise à jour** : 2026-05-18
+- **Dernière mise à jour** : 2026-05-21

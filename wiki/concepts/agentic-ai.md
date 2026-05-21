@@ -55,3 +55,6 @@ et al. 2025 — sources à ingérer.)*
 - [[function-calling]]
 - [[fleet-management]] — un domaine d'application
 - [[gemini-2-0-flash]]
+- Vue d'ensemble pédagogique française qui positionne les agents IA au
+  sommet de l'échelle des « compétences pour automatiser » :
+  [[2026-05-21-yes-we-prompt-30-competences-ia-2026]].

@@ -56,5 +56,9 @@ effective* (responsabilité du code applicatif).
 
 - [[agentic-ai]]
 - [[gemini-2-0-flash]]
+- [[prompt-rcorcf]] — mécanisme complémentaire côté *entrée* du LLM.
+- Aperçu pédagogique français qui présente le MCP (Model Context
+  Protocol) comme « ports USB de l'IA » :
+  [[2026-05-21-yes-we-prompt-30-competences-ia-2026]].
 - *(à comparer plus tard avec : text-to-SQL, ReAct, JSON mode strict,
   MCP — pages à créer.)*

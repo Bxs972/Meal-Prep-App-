@@ -52,3 +52,14 @@ opérations.
 - Caveats critiques signalés (impact factor IARJSET non-JCR, méthodologie non reproductible, profil étudiant des auteurs, rédaction probablement LLM-assistée). Posture wiki : illustration de pattern, pas benchmark.
 - Aucune contradiction (premier contenu réel).
 - Pistes de suivi : ingérer les deux surveys cités (Abou Ali & Dornaika 2025, IEEE Xplore ; Acharya, Kuppan & Divya 2025, IEEE Access vol. 13). Comparer plus tard avec text-to-SQL, ReAct, multi-agent, MCP.
+
+## [2026-05-21] ingest | Roisnel 2025 — 30 compétences IA en 2026
+- Source brute : `raw/articles/2025-12-07-yes-we-prompt-30-competences-ia-2026.md` (archivée commit 982f317).
+- Plan par défaut validé par l'utilisateur : pas de page auteur, pas de page niveaux-de-maturité, pas de stubs pour les concepts évoqués.
+- Page source créée : [[2026-05-21-yes-we-prompt-30-competences-ia-2026]].
+- Concept créé : [[prompt-rcorcf]] (avec mention des variantes CRISPE / RACE / CO-STAR / CLEAR à instruire si sources comparatives).
+- Entité créée : [[yes-we-prompt]] (organisation, tag `source-commerciale`).
+- Cross-refs ajoutées : [[function-calling]] (mention MCP « ports USB de l'IA »), [[agentic-ai]] (positionnement des agents au sommet des compétences d'automatisation).
+- Caveats signalés : source commerciale (organisme de formation, lead magnet), statistiques non sourcées, marketing speak, qualifications auto-attribuées (« standard industriel », « cartographie officielle »). Posture wiki : carte mentale / vue d'ensemble, pas référence technique.
+- Aucune contradiction avec le wiki existant.
+- Pistes de suivi : créer les pages dédiées à mesure que des sources techniques arrivent (MCP, RAG, deepsearch, few-shot, vibecoding, IA Act, RGPD, biais, hallucinations) ; vérifier l'origine de la stat « 10 % maîtrisent » ; chercher des sources primaires de prompt engineering (docs OpenAI/Google/Anthropic).
